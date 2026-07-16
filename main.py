@@ -27,20 +27,28 @@ def find_winner(user, system):
 
 
 def play():
-    user_choice = get_user_choice()
-    system_choice = get_system_choice()
-    winner = find_winner(user_choice, system_choice)
 
-    print(f"User choice: {user_choice} \t System choice: {system_choice}")
+    result = {"User": 0, "System": 0}
 
-    if winner == user_choice:
-        print("User won.")
+    while result["User"] < 3 and result["System"] < 3:
+        user_choice = get_user_choice()
+        system_choice = get_system_choice()
+        winner = find_winner(user_choice, system_choice)
 
-    elif winner == system_choice:
-        print("System won.")
+        print(f"User choice: {user_choice} \t System choice: {system_choice}")
 
-    else:
-        print("Drow")
+        if winner == user_choice:
+            result["User"] += 1
+            print("User won.")
+
+        elif winner == system_choice:
+            result["System"] += 1
+            print("System won.")
+
+        else:
+            print("Drow")
+
+    print(f'User: {result["User"]} System: {result["System"]}')
             
 
 if __name__ == "__main__":
