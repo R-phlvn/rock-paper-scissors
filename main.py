@@ -65,7 +65,7 @@ def play_game():
             print("System won.")
 
         else:
-            print("Drow")
+            print("Draw")
     
     update_scoreboard(result)
     play_again()
@@ -78,7 +78,7 @@ def play_again():
         print("Game ended. Thanks for playing.")
         return
     else:
-        print("Failed. Please try again and let us know if you'd like to play again or not.")
+        print("Failed. Please just enter yes or no.")
         return play_again()
 
 @log_time  
