@@ -1,5 +1,6 @@
 import random
 from config import GAME_CHOICES, RULES, scoreboard
+from datetime import datetime
 
 def get_user_choice():
 
@@ -82,4 +83,11 @@ def play_again():
     
 
 if __name__ == "__main__":
+    start_time = datetime.now()
     play()
+    end_time = datetime.now()
+    duration = end_time - start_time
+    print(
+        f"Total time: {duration.seconds // 3600}:"
+        f"{duration.seconds // 60}:{duration.seconds % 60}"
+    )
