@@ -1,6 +1,7 @@
 import random
 from config import GAME_CHOICES, RULES, scoreboard
 from datetime import datetime
+from decorators import log_time
 
 def get_user_choice():
 
@@ -44,8 +45,7 @@ def show_result(msg):
     print("##" f' Last game: {msg}'.ljust(26), "##")
     print("#" * 29)
 
-
-def play():
+def play_game():
 
     result = {"User": 0, "System": 0}
 
@@ -73,21 +73,17 @@ def play():
 def play_again():
     user_response = input("Do you want to play again? (Yes/No) ").capitalize()
     if user_response == "Yes":
-        play()
+        play_game()
     elif user_response == "No":
         print("Game ended. Thanks for playing.")
         return
     else:
         print("Failed. Please try again and let us know if you'd like to play again or not.")
         return play_again()
-    
+
+@log_time  
+def play():
+    play_game()
 
 if __name__ == "__main__":
-    start_time = datetime.now()
     play()
-    end_time = datetime.now()
-    duration = end_time - start_time
-    print(
-        f"Total time: {duration.seconds // 3600}:"
-        f"{duration.seconds // 60}:{duration.seconds % 60}"
-    )
