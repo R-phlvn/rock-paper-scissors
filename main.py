@@ -1,5 +1,5 @@
 import random
-from config import GAME_CHOICES, RULES
+from config import GAME_CHOICES, RULES, scoreboard
 
 def get_user_choice():
 
@@ -26,6 +26,24 @@ def find_winner(user, system):
     return RULES[t_match]
 
 
+def update_scoreboard(result):
+    if result["User"] == 3:
+        scoreboard["User"] += 1
+        msg = "You won."
+    elif result["System"] == 3:
+        scoreboard["System"] += 1
+        msg = "You lost."
+
+    show_result(msg)
+
+def show_result(msg):
+    print("#" * 29)
+    print("##" f' User: {scoreboard["User"]}'.ljust(26), "##")
+    print("##" f' System: {scoreboard["System"]}'.ljust(26), "##")
+    print("##" f' Last game: {msg}'.ljust(26), "##")
+    print("#" * 29)
+
+
 def play():
 
     result = {"User": 0, "System": 0}
@@ -47,9 +65,21 @@ def play():
 
         else:
             print("Drow")
+    
+    update_scoreboard(result)
+    play_again()
 
-    print(f'User: {result["User"]} System: {result["System"]}')
-            
+def play_again():
+    user_response = input("Do you want to play again? (Yes/No) ").capitalize()
+    if user_response == "Yes":
+        play()
+    elif user_response == "No":
+        print("Game ended. Thanks for playing.")
+        return
+    else:
+        print("Failed. Please try again and let us know if you'd like to play again or not.")
+        return play_again()
+    
 
 if __name__ == "__main__":
     play()
