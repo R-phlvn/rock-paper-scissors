@@ -41,7 +41,7 @@ def play():
 
     else:
         print("Drow")
-
+            
 
 if __name__ == "__main__":
     play()
