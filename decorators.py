@@ -1,13 +1,5 @@
 from datetime import datetime
 
-def logger(func):
-    def wrapped_func(*args, **kwargs):
-        print(f"Arguments: {args}, {kwargs}")
-        return func(*args, **kwargs)
-    return wrapped_func
-
-
-
 def log_time(func):
     def wrap_function(*args, **kwargs):
         start_time = datetime.now()
